@@ -3,14 +3,14 @@ import { useLayoutEffect, useRef } from "react";
 
 export default function NaverMap() {
   const naverMaps = useNaverMap();
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     if (!naverMaps) {
       return;
     }
 
-    new naverMaps.Map(ref.current);
+    new naverMaps.Map(ref.current as HTMLDivElement);
   }, [naverMaps]);
 
   if (!naverMaps) {
