@@ -2,11 +2,19 @@
 
 import Marker from "@/components/Marker";
 import NaverMap from "@/components/NaverMap";
+import NaverMapsProvider from "@/components/NaverMapsProvider";
+
+import { UNIV_COORDS } from "@/constants/coords";
 
 export default function Home() {
   return (
-    <NaverMap>
-      <Marker />
-    </NaverMap>
+    <NaverMapsProvider>
+      <NaverMap position={UNIV_COORDS.SOGANG}>
+        <Marker position={UNIV_COORDS.SOGANG} />
+      </NaverMap>
+      <NaverMap position={UNIV_COORDS.EWHA}>
+        <Marker position={UNIV_COORDS.EWHA} />
+      </NaverMap>
+    </NaverMapsProvider>
   );
 }

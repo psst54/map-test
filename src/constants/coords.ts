@@ -1,3 +1,8 @@
+export interface Position {
+  lat: number;
+  lng: number;
+}
+
 export const UNIV_COORDS = {
   EWHA: { lat: 37.5596817, lng: 126.9455855 },
   HONGIK: { lat: 37.5527434, lng: 126.9243838 },

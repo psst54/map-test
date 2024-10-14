@@ -1,12 +1,20 @@
-import { UNIV_COORDS } from "@/constants/coords";
-import { NaverMapContext } from "@/contexts/naverMapContext";
-import useNaverMap from "@/hooks/useNaverMap";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, ReactNode } from "react";
 
-export default function NaverMap({ children }) {
-  const naverMaps = useNaverMap();
+import { useNaverMapsContext } from "@/contexts/naverMapsContext";
+import { NaverMapContext } from "@/contexts/naverMapContext";
+
+import { Position } from "@/constants/coords";
+
+export default function NaverMap({
+  children,
+  position,
+}: {
+  children: ReactNode;
+  position: Position;
+}) {
+  const naverMaps = useNaverMapsContext();
   const ref = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<naver.maps.Map | null>(null);
+  const [map, setMap] = useState<naver.maps.Map | undefined>();
 
   useLayoutEffect(() => {
     if (!naverMaps) {
@@ -15,10 +23,7 @@ export default function NaverMap({ children }) {
 
     setMap(
       new naverMaps.Map(ref.current as HTMLDivElement, {
-        center: new naver.maps.LatLng(
-          UNIV_COORDS.SOGANG.lat,
-          UNIV_COORDS.SOGANG.lng
-        ),
+        center: new naver.maps.LatLng(position.lat, position.lng),
         zoom: 17,
       })
     );
