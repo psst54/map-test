@@ -12,9 +12,6 @@ export default function Home() {
       <NaverMap position={UNIV_COORDS.SOGANG}>
         <Marker position={UNIV_COORDS.SOGANG} />
       </NaverMap>
-      <NaverMap position={UNIV_COORDS.EWHA}>
-        <Marker position={UNIV_COORDS.EWHA} />
-      </NaverMap>
     </NaverMapsProvider>
   );
 }
