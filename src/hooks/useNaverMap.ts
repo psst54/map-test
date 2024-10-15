@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function useNaverMap() {
-  const [naverMaps, setNaverMaps] = useState(null);
+  const [naverMaps, setNaverMaps] = useState<typeof naver.maps | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.naver?.maps) {
