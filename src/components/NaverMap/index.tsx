@@ -16,26 +16,19 @@ export default function NaverMap({
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<naver.maps.Map | undefined>();
 
+  // make map object
   useLayoutEffect(() => {
     if (!naverMaps) {
       return;
     }
 
-    setMap(
-      new naverMaps.Map(ref.current as HTMLDivElement, {
-        center: new naver.maps.LatLng(position.lat, position.lng),
-        zoom: 17,
-      })
-    );
+    const newMap = new naverMaps.Map(ref.current as HTMLDivElement, {
+      center: new naver.maps.LatLng(position.lat, position.lng),
+      zoom: 17,
+    });
 
-    // naverMaps.Event.addListener(map, "click", function (e) {
-    //   console.log(e.coord);
-    // });
+    setMap(newMap);
   }, [naverMaps]);
-
-  if (!naverMaps) {
-    return null;
-  }
 
   return (
     <NaverMapContext.Provider value={{ map }}>
