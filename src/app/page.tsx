@@ -7,21 +7,20 @@ import MapEvent from "@/components/MapEvent";
 
 import { UNIV_COORDS } from "@/constants/coords";
 
-type CoordEvent = {
+interface CoordEvent extends Event {
   coord: { x: number; y: number; _lat: number; _lng: number };
-};
+}
 
 export default function Home() {
+  function onClick(event: Event) {
+    console.log((event as CoordEvent).coord);
+  }
+
   return (
     <NaverMapsProvider>
       <NaverMap position={UNIV_COORDS.SOGANG}>
         <Marker position={UNIV_COORDS.SOGANG} />
-        <MapEvent
-          eventType="click"
-          callback={(event: Event) => {
-            console.log((event as unknown as CoordEvent).coord);
-          }}
-        />
+        <MapEvent eventType="click" callback={onClick} />
       </NaverMap>
     </NaverMapsProvider>
   );
